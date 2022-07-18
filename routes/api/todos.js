@@ -33,15 +33,15 @@ router.post('/', (req, res) => {
 
 // Update
 router.put('/:sun', (req, res) => {
-  const { id } = req.params
+  const { sun } = req.params
   const { title } = req.body
 
   const todos = JSON.parse(fs.readFileSync(todosFile, 'utf8')) // 객체데이터로 만들고 todos에 담는다.
-  todos[id].title = title
+  todos[sun].title = title
 
   fs.writeFileSync(todosFile, JSON.stringify(todos, null, 2))
 
-  res.status(200).json(todos[id])
+  res.status(200).json(todos[sun])
 })
 
 // Delete
