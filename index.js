@@ -1,5 +1,12 @@
 const express = require('express')
 const cors = require('cors')
+const mongoose = require('mongoose')
+
+mongoose.connect('mongodb+srv://heropy:mJGPt8KyOl694OQ8@cluster0.kehet.mongodb.net/KDT-TEST?retryWrites=true&w=majority')
+const db = mongoose.connection
+db.once('open', () => {
+  console.log('MongoDB connected!')
+})
 
 // global.appRoot를 사용하면 이 루트경로의 정보를 가져올 수 있다.
 global.appRoot = __dirname
@@ -19,6 +26,6 @@ app.use('/api/todos', require('./routes/api/todos.js'))
 const port = process.env.PORT || 1234
 // http://localhost:1234/  => 위 app.use('/')에서 /가 1234뒤의 /을 말한다.
 // http://localhost:1234/api/todos?a=1&b=sun  => 위 app.use('/')에서 /가 1234뒤의 /을 말한다.
-app.listen(1234, () => {
+app.listen(port, () => {
   console.log('서버 동작중!~')
 })

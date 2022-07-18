@@ -46,10 +46,10 @@ router.put('/:sun', (req, res) => {
 
 // Delete
 router.delete('/:sun', (req, res) => {
-  const { id } = req.params
+  const { sun } = req.params
 
   const todos = JSON.parse(fs.readFileSync(todosFile, 'utf8'))
-  delete todos[id]
+  delete todos[sun]
 
   fs.writeFileSync(todosFile, JSON.stringify(todos, null, 2))
 
